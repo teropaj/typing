@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html onkeydown="myFunction(event)">
 <head>
   <meta charset="utf-8">
   <title></title>
@@ -7,39 +7,69 @@
 
 
 
-<body onkeydown="myFunction(event)">
+<body  >
 
-<p>Press a key on the keyboard in the input field.</p>
+
 
 
 
 
 <span>
-  <span id="demo">A</span>
+  <span id="demo"></span>
   <span id="next" style="color: red">Ö</span>
 </span>
+
+<div id=result></div>
 <script>
+
 var keyCode=65;
 var text=""
-document.getElementById('next').innerHTML='next'+String.fromCharCode(keyCode+1)+""
+document.getElementById('next').innerHTML='next'+String.fromCharCode(keyCode)+""
+
+var right=0;
 
 function myFunction(event) {
+
+
     console.log(String.fromCharCode(keyCode+1)+"");
-    if (event.keyCode==keyCode+1) {
+    if (event.keyCode==keyCode) {
+        console.log('was here')
         text += event.key;
         //console.log(String.fromCharCode(keyCode+1)+"");
         document.getElementById("demo").innerHTML = text;
         keyCode++;
         document.getElementById('next').innerHTML=String.fromCharCode(keyCode)+""
+        if(keyCode!=90) console.log('keycode '+keyCode)
+          else t.stop();
 
+        console.log('keycode '+keyCode)
+        if (keyCode==66) t=timer();
+
+        right++
     }
     else {
       console.log(String.fromCharCode(keyCode))
     }
+  }
 
-  document.getElementById('next').innerHTML=String.fromCharCode(keyCode+1)+""
-  console.log(event.keyCode)
-}
+    var timer = function(name) {
+      var start = new Date();
+      console.log('Timer started')
+      return {
+          stop: function() {
+              var end  = new Date();
+              var time = end.getTime() - start.getTime();
+              result.innerHTML= Math.round(time/10)*10/1000, 's';
+          }
+      }
+  };
+
+
+  document.getElementById('next').innerHTML=String.fromCharCode(keyCode)+""
+
+
+
+
 </script>
 
 </body>
